@@ -103,4 +103,12 @@ RSpec.describe Group, type: :model do
       expect { group_invite_status2.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
+
+  describe "assignment_repos", :vcr do
+    let(:organization)    { classroom_org }
+    let(:grouping)        { create(:grouping, organization: organization) }
+    let(:group)           { Group.create(grouping: grouping, title: "#{Faker::Company.name} Team") }
+    let(:assignment_repo) { GroupAssignmentRepo.create(group_assignment: group_assignment, group: group) }
+
+  end
 end

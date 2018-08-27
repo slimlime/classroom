@@ -16,6 +16,7 @@ class Group < ApplicationRecord
 
   has_many :users, through: :repo_accesses
   has_many :group_invite_statuses, dependent: :destroy
+  has_many :group_assignment_repos, dependent: :destroy
 
   validates :github_team_id, presence: true
   validates :github_team_id, uniqueness: true
